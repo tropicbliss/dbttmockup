@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Header() {
   const navigation = [
-    { name: "Patient care checklist", href: "/checklist" },
+    { name: "Checklist", href: "/checklist" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session, status } = useSession();

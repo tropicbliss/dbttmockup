@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 const Hero = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigation = [
-    { name: "Patient care checklist", href: "/checklist" },
+    { name: "Checklist", href: "/checklist" },
   ];
   const { data: session, status } = useSession();
   const accountText = session ? "Logout" : "Login";
