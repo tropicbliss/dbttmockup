@@ -153,6 +153,14 @@ const Hero = () => {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 Data to enrich your medical business
               </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <Link
+                  href="/about"
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Learn more <span aria-hidden="true">→</span>
+                </Link>
+              </div>
             </div>
           </div>
           <div className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

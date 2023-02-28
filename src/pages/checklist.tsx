@@ -7,7 +7,7 @@ import {
 import { useSession } from "next-auth/react";
 
 export default function Checklist() {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const { data: taskEntries, isLoading } = api.tasks.getAllTasks.useQuery();
   const utils = api.useContext();
   const deleteTask = api.tasks.deleteTask.useMutation({
