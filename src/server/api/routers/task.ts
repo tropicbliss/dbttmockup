@@ -23,9 +23,9 @@ export const taskRouter = createTRPCRouter({
                     name: true,
                     dueAt: true,
                 },
-                where: {
-                    userId: ctx.session.user.id
-                },
+                // where: {
+                //     userId: ctx.session.user.id
+                // },
                 orderBy: {
                     dueAt: "asc"
                 }
