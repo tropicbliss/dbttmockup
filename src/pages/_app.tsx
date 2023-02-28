@@ -6,14 +6,17 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 import Header from "~/components/Header";
+import { useRouter } from "next/router";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const { asPath } = useRouter();
+
   return (
     <SessionProvider session={session}>
-      <Header />
+      {asPath !== "/" && <Header />}
       <Component {...pageProps} />
     </SessionProvider>
   );

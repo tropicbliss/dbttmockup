@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Header() {
   const navigation = [
-    { name: "Checklist", href: "/checklist" },
+    { name: "Patient care checklist", href: "/checklist" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { data: session, status } = useSession();
@@ -26,7 +26,7 @@ export default function Header() {
         aria-label="Global"
       >
         <Link href="/" className="-m-1.5 p-1.5">
-          <span className="sr-only">Your Company</span>
+          <span className="sr-only">Eldertechnovators</span>
           <img
             className="h-8 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
