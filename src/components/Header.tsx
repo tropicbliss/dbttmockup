@@ -9,7 +9,7 @@ export default function Header() {
     { name: "Checklist", href: "/checklist" },
   ];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const accountText = session ? "Logout" : "Login";
   const accountHandler = () => {
     if (session) {
