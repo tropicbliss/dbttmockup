@@ -85,7 +85,7 @@ export default function Checklist() {
       <ul role="list" className="divide-y divide-gray-200">
         {taskEntries?.map((entry) => (
           <li key={entry.id}>
-            <a href="#" className="block hover:bg-gray-50">
+            <span className="block hover:bg-gray-50">
               <div className="flex items-center px-4 py-4 sm:px-6">
                 <div className="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
                   <div className="truncate">
@@ -124,7 +124,7 @@ export default function Checklist() {
                   />
                 </button>
               </div>
-            </a>
+            </span>
           </li>
         ))}
       </ul>
