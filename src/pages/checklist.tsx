@@ -7,6 +7,7 @@ import {
 import { useSession } from "next-auth/react";
 
 export default function Checklist() {
+  const { data: session, status } = useSession();
   const { data: taskEntries, isLoading } = api.tasks.getAllTasks.useQuery();
   const utils = api.useContext();
   const deleteTask = api.tasks.deleteTask.useMutation({
@@ -25,7 +26,32 @@ export default function Checklist() {
     },
   });
 
-  if (status === "loading" || isLoading) {
+  if (status === "unauthenticated") {
+    return (
+      <div className="rounded-md bg-yellow-50 p-4">
+        <div className="flex">
+          <div className="flex-shrink-0">
+            <ExclamationTriangleIcon
+              className="h-5 w-5 text-yellow-400"
+              aria-hidden="true"
+            />
+          </div>
+          <div className="ml-3">
+            <h3 className="text-sm font-medium text-yellow-800">
+              Attention needed
+            </h3>
+            <div className="mt-2 text-sm text-yellow-700">
+              <p>
+                You need to sign in to access this service.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading || status === "loading") {
     return <></>;
   }
 
