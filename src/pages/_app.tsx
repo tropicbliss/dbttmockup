@@ -30,7 +30,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <title>Eldertechnovators</title>
       </Head>
       {asPath !== "/" && <Header />}
-      <Component {...pageProps} />
+      <div className="mx-auto max-w-7xl pb-3 sm:px-6 lg:px-8">
+        <Component {...pageProps} />
+      </div>
     </SessionProvider>
   );
 };

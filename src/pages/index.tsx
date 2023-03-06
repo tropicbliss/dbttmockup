@@ -4,10 +4,11 @@ import { type NextPage } from "next";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
-    <main>
+    <main className="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <Hero />
     </main>
   );
@@ -18,7 +19,7 @@ const Hero = () => {
   const navigation = [
     { name: "Checklist", href: "/checklist" },
   ];
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const accountText = session ? "Logout" : "Login";
   const accountHandler = () => {
     if (session) {
@@ -60,7 +61,7 @@ const Hero = () => {
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
+              <Image
                 className="h-8"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
@@ -102,7 +103,7 @@ const Hero = () => {
             <div className="flex items-center justify-between">
               <Link href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">Eldertechnovators</span>
-                <img
+                <Image
                   className="h-8"
                   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                   alt=""

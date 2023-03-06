@@ -3,6 +3,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   const navigation = [
@@ -27,7 +28,7 @@ export default function Header() {
       >
         <Link href="/" className="-m-1.5 p-1.5">
           <span className="sr-only">Eldertechnovators</span>
-          <img
+          <Image
             className="h-8 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
             alt=""
@@ -74,7 +75,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             <span className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
+              <Image
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                 alt=""
