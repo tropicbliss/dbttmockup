@@ -3,10 +3,14 @@ import {
   ShieldExclamationIcon,
   ChevronRightIcon,
   ExclamationTriangleIcon,
+  XMarkIcon,
+  CheckCircleIcon,
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import map from "../../public/map.png";
+import { Fragment, useState } from "react";
+import { Transition } from "@headlessui/react";
 
 const cards = [
   { name: "Incidents resolved", icon: ScaleIcon, amount: "27" },
@@ -32,6 +36,7 @@ const statusStyles: { [key: string]: string } = {
 
 export default function Dashboard() {
   const { status } = useSession();
+  const [noti, setNoti] = useState(false);
 
   if (status === "unauthenticated") {
     return (
@@ -62,6 +67,58 @@ export default function Dashboard() {
 
   return (
     <>
+      <>
+        <div
+          aria-live="assertive"
+          className="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
+        >
+          <div className="flex w-full flex-col items-center space-y-4 sm:items-end">
+            <Transition
+              show={noti}
+              as={Fragment}
+              enter="transform ease-out duration-300 transition"
+              enterFrom="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
+              enterTo="translate-y-0 opacity-100 sm:translate-x-0"
+              leave="transition ease-in duration-100"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+                <div className="p-4">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0">
+                      <CheckCircleIcon
+                        className="h-6 w-6 text-green-400"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <div className="ml-3 w-0 flex-1 pt-0.5">
+                      <p className="text-sm font-medium text-gray-900">
+                        Automated Ambulance Caller
+                      </p>
+                      <p className="mt-1 text-sm text-gray-500">
+                        An ambulance is on the way
+                      </p>
+                    </div>
+                    <div className="ml-4 flex flex-shrink-0">
+                      <button
+                        type="button"
+                        className="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => {
+                          setNoti(false);
+                        }}
+                      >
+                        <span className="sr-only">Close</span>
+                        <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Transition>
+          </div>
+        </div>
+      </>
       <div className="min-h-full">
         <div className="flex flex-1 flex-col">
           <main className="flex-1 pb-8">
@@ -103,6 +160,9 @@ export default function Dashboard() {
                       Activate alarm
                     </button>
                     <button
+                      onClick={() => {
+                        setNoti(true);
+                      }}
                       type="button"
                       className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
                     >
@@ -236,6 +296,10 @@ export default function Dashboard() {
                               Event
                             </th>
                             <th
+                              className="bg-gray-50 px-6 py-3 text-left text-sm font-semibold text-gray-900"
+                              scope="col"
+                            ></th>
+                            <th
                               className="bg-gray-50 px-6 py-3 text-right text-sm font-semibold text-gray-900"
                               scope="col"
                             >
@@ -270,6 +334,14 @@ export default function Dashboard() {
                                     </p>
                                   </button>
                                 </div>
+                              </td>
+                              <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
+                                <button
+                                  type="button"
+                                  className="rounded bg-indigo-600 py-1 px-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                >
+                                  View footage
+                                </button>
                               </td>
                               <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
                                 <span className="font-medium text-gray-900">
