@@ -349,7 +349,7 @@ export default function Dashboard() {
                                 </span>
                               </td>
                               <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:block">
-                                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium capitalize">
+                                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
                                   {transaction.status}
                                 </span>
                               </td>
