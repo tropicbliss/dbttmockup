@@ -45,9 +45,7 @@ export default function Checklist() {
               Attention needed
             </h3>
             <div className="mt-2 text-sm text-yellow-700">
-              <p>
-                You need to sign in to access this service.
-              </p>
+              <p>You need to sign in to access this service.</p>
             </div>
           </div>
         </div>
@@ -56,7 +54,7 @@ export default function Checklist() {
   }
 
   if (isLoading || status === "loading") {
-    return <></>;
+    return null;
   }
 
   if (taskEntries?.length === 0) {
@@ -77,9 +75,7 @@ export default function Checklist() {
             d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"
           />
         </svg>
-        <h3 className="mt-2 text-sm font-semibold text-gray-900">
-          No tasks
-        </h3>
+        <h3 className="mt-2 text-sm font-semibold text-gray-900">No tasks</h3>
       </div>
     );
   }
@@ -116,7 +112,7 @@ export default function Checklist() {
                         Alert!
                       </p>
                       <p className="mt-1 text-sm text-gray-500">
-                        Someone has died, hurry up and dispose the body!
+                        You have 6 unread notifications
                       </p>
                     </div>
                     <div className="ml-4 flex flex-shrink-0">

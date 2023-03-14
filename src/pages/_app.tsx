@@ -8,6 +8,9 @@ import "~/styles/globals.css";
 import Header from "~/components/Header";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -26,13 +29,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
         />
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <title>Eldertechnovators</title>
       </Head>
-      {asPath !== "/" && <Header />}
-      <div className="mx-auto max-w-7xl pb-3 sm:px-6 lg:px-8">
-        <Component {...pageProps} />
-      </div>
+      <main className={inter.className}>
+        {asPath !== "/" && <Header />}
+        <div className="mx-auto max-w-7xl pb-3 sm:px-6 lg:px-8">
+          <Component {...pageProps} />
+        </div>
+      </main>
     </SessionProvider>
   );
 };
