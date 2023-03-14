@@ -185,6 +185,20 @@ export default function About() {
           </div>
         </div>
       </div>
+      <div className="bg-white px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
+          <div className="mt-10 max-w-2xl">
+            <h2 className="mt-16 text-4xl font-bold tracking-tight text-gray-900">
+              Checklist
+            </h2>
+            <p className="m-6">
+              Caretakers make mistakes. A specialised checklist for caretakers
+              help remind them of tasks such as administering medicine at
+              certain times.
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

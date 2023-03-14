@@ -107,14 +107,16 @@ export default function Checklist() {
                         aria-hidden="true"
                       />
                     </div>
-                    <div className="ml-3 w-0 flex-1 pt-0.5">
-                      <p className="text-sm font-medium text-gray-900">
-                        Alert!
-                      </p>
-                      <p className="mt-1 text-sm text-gray-500">
-                        You have 6 unread notifications
-                      </p>
-                    </div>
+                    {taskEntries?.length === 0 && (
+                      <div className="ml-3 w-0 flex-1 pt-0.5">
+                        <p className="text-sm font-medium text-gray-900">
+                          Alert!
+                        </p>
+                        <p className="mt-1 text-sm text-gray-500">
+                          You have {taskEntries.length} unread notifications
+                        </p>
+                      </div>
+                    )}
                     <div className="ml-4 flex flex-shrink-0">
                       <button
                         type="button"
