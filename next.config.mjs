@@ -22,6 +22,7 @@ const config = {
   },
   images: {
     domains: ["tailwindui.com", "images.unsplash.com"],
+    dangerouslyAllowSVG: true,
   },
 };
 export default config;

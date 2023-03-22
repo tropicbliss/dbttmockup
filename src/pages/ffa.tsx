@@ -62,7 +62,7 @@ export default function FFA() {
   return (
     <>
       <Image
-        src={ffa}
+        src={ffa as string}
         alt=""
         sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
