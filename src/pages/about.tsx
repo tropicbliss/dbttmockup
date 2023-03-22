@@ -3,7 +3,7 @@ import summary from "../../public/summary.jpg";
 import beforefall from "../../public/beforefall.jpg";
 import afterfall from "../../public/afterfall.jpg";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
-import ReactPlayer from "react-player";
+import ffadash from "../../public/ffadash.png";
 
 export default function About() {
   return (
@@ -193,6 +193,21 @@ export default function About() {
                   aria-hidden="true"
                 />
                 Fall detection at work.
+              </figcaption>
+            </figure>
+            <figure className="mt-8">
+              <Image
+                className="rounded-xl bg-gray-50 object-cover"
+                src={ffadash}
+                alt="Dashboard, during the fall"
+                placeholder="blur"
+              />
+              <figcaption className="mt-4 flex gap-x-2 text-sm leading-6 text-gray-500">
+                <InformationCircleIcon
+                  className="mt-0.5 h-5 w-5 flex-none text-gray-300"
+                  aria-hidden="true"
+                />
+                Fall frequency analytics
               </figcaption>
             </figure>
           </div>
