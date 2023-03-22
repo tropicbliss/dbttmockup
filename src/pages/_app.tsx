@@ -17,6 +17,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   const { asPath } = useRouter();
+  const optOut = ["/", "/ffa"];
 
   return (
     <SessionProvider session={session}>
@@ -32,7 +33,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <title>Eldertechnovators</title>
       </Head>
       <main className={inter.className}>
-        {asPath !== "/" && <Header />}
+        {!optOut.includes(asPath) && <Header />}
         <div className="mx-auto max-w-7xl pb-3 sm:px-6 lg:px-8">
           <Component {...pageProps} />
         </div>

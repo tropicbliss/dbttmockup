@@ -11,11 +11,16 @@ import { useSession } from "next-auth/react";
 import map from "../../public/map.png";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import falling from "../../public/falling.gif";
+import Link from "next/link";
 
 const cards = [
   { name: "Incidents resolved", icon: ScaleIcon, amount: "27" },
   { name: "Marked as false alarm", icon: ScaleIcon, amount: "9" },
+  {
+    name: "Fall Frequency Analytics (FFA)",
+    icon: ScaleIcon,
+    amount: "View all",
+  },
   // More items...
 ];
 const transactions = [
@@ -37,8 +42,11 @@ const statusStyles: { [key: string]: string } = {
 
 export default function Dashboard() {
   const { status } = useSession();
-  const [noti, setNoti] = useState(false);
+  const [noti, setNoti] = useState(true);
   const [modal, setModal] = useState(false);
+  const [notiText, setNotiText] = useState(
+    "A serious fall has occurred, calling the ambulance"
+  );
 
   if (status === "unauthenticated") {
     return (
@@ -98,9 +106,7 @@ export default function Dashboard() {
                       <p className="text-sm font-medium text-gray-900">
                         Automated Ambulance Caller
                       </p>
-                      <p className="mt-1 text-sm text-gray-500">
-                        An ambulance is on the way
-                      </p>
+                      <p className="mt-1 text-sm text-gray-500">{notiText}</p>
                     </div>
                     <div className="ml-4 flex flex-shrink-0">
                       <button
@@ -173,13 +179,7 @@ export default function Dashboard() {
                           Footage
                         </Dialog.Title>
                         <div className="mt-2">
-                          <Image
-                            className="rounded-md"
-                            src={falling}
-                            alt=""
-                            width={3000}
-                            height={1500}
-                          />
+                          <video autoPlay loop src="/falling.mp4"></video>
                         </div>
                       </div>
                     </div>
@@ -233,6 +233,7 @@ export default function Dashboard() {
                     <button
                       onClick={() => {
                         setNoti(true);
+                        setNotiText("An ambulance is on the way");
                       }}
                       type="button"
                       className="inline-flex items-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
@@ -280,9 +281,19 @@ export default function Dashboard() {
                       </div>
                       <div className="bg-gray-50 px-5 py-3">
                         <div className="text-sm">
-                          <button className="font-medium text-cyan-700 hover:text-cyan-900">
-                            View all
-                          </button>
+                          {card.name === "Fall Frequency Analytics (FFA)" ? (
+                            <Link
+                              href="/ffa"
+                              target="_blank"
+                              className="font-medium text-cyan-700 hover:text-cyan-900"
+                            >
+                              View all
+                            </Link>
+                          ) : (
+                            <button className="font-medium text-cyan-700 hover:text-cyan-900">
+                              View all
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
