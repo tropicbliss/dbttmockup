@@ -8,7 +8,6 @@ import {
 } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import map from "../../public/map.png";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
@@ -31,6 +30,7 @@ const transactions = [
     status: "12 pm, 3rd March 2023",
     date: "3 minute(s)",
     datetime: "2023-03-03",
+    riskLevel: "High",
   },
   // More transactions...
 ];
@@ -42,6 +42,11 @@ export default function Dashboard() {
   const [notiText, setNotiText] = useState(
     "A serious fall has occurred, calling the ambulance"
   );
+  const [videoUrl, setVideoUrl] = useState("/room.mp4");
+  const openModal = (url: string) => {
+    setVideoUrl(url);
+    setModal(true);
+  };
 
   if (status === "unauthenticated") {
     return (
@@ -174,7 +179,7 @@ export default function Dashboard() {
                           Footage
                         </Dialog.Title>
                         <div className="mt-2">
-                          <video autoPlay loop src="/falling.mp4"></video>
+                          <video autoPlay loop src={videoUrl}></video>
                         </div>
                       </div>
                     </div>
@@ -296,8 +301,128 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="my-8 flex justify-center">
-                <Image src={map} alt="" width={1000} height={1000} />
+              <div className="relative my-8 flex justify-center">
+                <img src="/map.png" alt="" />
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "32rem",
+                    top: "4rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "26rem",
+                    top: "7rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/falling.mp4")}
+                  style={{
+                    left: "21rem",
+                    top: "10rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/achtung.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "15rem",
+                    top: "14rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "41rem",
+                    top: "12rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "46rem",
+                    top: "13rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "52rem",
+                    top: "19rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "58rem",
+                    top: "21rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/corridor.mp4")}
+                  style={{
+                    left: "48rem",
+                    top: "24rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "44rem",
+                    top: "30rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "37rem",
+                    top: "22rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
+                <button
+                  onClick={() => openModal("/room.mp4")}
+                  style={{
+                    left: "30rem",
+                    top: "15rem",
+                  }}
+                  className="absolute"
+                >
+                  <img src="/ok.svg" alt="" />
+                </button>
               </div>
 
               <h2 className="mx-auto mt-8 max-w-6xl px-4 text-lg font-medium leading-6 text-gray-900 sm:px-6 lg:px-8">
@@ -331,6 +456,11 @@ export default function Dashboard() {
                               <time dateTime={transaction.datetime}>
                                 {transaction.date}
                               </time>
+                              <span>
+                                <span className="font-medium text-gray-900">
+                                  {transaction.riskLevel}
+                                </span>
+                              </span>
                             </span>
                           </span>
                           <ChevronRightIcon
@@ -394,6 +524,12 @@ export default function Dashboard() {
                             >
                               Resolution time
                             </th>
+                            <th
+                              className="bg-gray-50 px-6 py-3 text-right text-sm font-semibold text-gray-900"
+                              scope="col"
+                            >
+                              Predicted risk level
+                            </th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 bg-white">
@@ -415,7 +551,7 @@ export default function Dashboard() {
                               <td className="whitespace-nowrap px-6 py-4 text-right text-sm text-gray-500">
                                 <button
                                   onClick={() => {
-                                    setModal(true);
+                                    openModal("/falling.mp4");
                                   }}
                                   type="button"
                                   className="rounded bg-indigo-600 py-1 px-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -437,6 +573,11 @@ export default function Dashboard() {
                                 <time dateTime={transaction.datetime}>
                                   {transaction.date}
                                 </time>
+                              </td>
+                              <td className="hidden whitespace-nowrap px-6 py-4 text-sm text-gray-500 md:block">
+                                <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium">
+                                  {transaction.riskLevel}
+                                </span>
                               </td>
                             </tr>
                           ))}
