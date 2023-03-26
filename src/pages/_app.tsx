@@ -30,7 +30,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         />
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.ico" />
-        <title>Eldertechnovators</title>
+        <title>Fall Guardian</title>
       </Head>
       <main className={inter.className}>
         {!optOut.includes(asPath) && <Header />}
