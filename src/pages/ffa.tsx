@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import ffa from "../../public/ffa.svg";
+import chart from "../../public/chart.jpeg";
 
 export default function FFA() {
   const [byPatient, setByPatient] = useState(true);
@@ -208,6 +209,7 @@ export default function FFA() {
           </div>
         </div>
       )}
+      <Image src={chart} alt="" />
     </>
   );
 }
